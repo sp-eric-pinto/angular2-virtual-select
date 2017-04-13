@@ -75,9 +75,10 @@ export class VirtualScrollComponent implements OnInit, OnDestroy, OnChanges {
     @ViewChild('content', { read: ElementRef })
     protected contentElementRef: ElementRef;
 
+    scrollHeight: number;
+    topPadding: number;
+
     private onScrollListener: Function;
-    private topPadding: number;
-    private scrollHeight: number;
     private previousStart: number;
     private previousEnd: number;
     private startupLoop: boolean = true;

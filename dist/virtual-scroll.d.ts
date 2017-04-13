@@ -14,9 +14,9 @@ export declare class VirtualScrollComponent implements OnInit, OnDestroy, OnChan
     update: EventEmitter<any[]>;
     change: EventEmitter<ChangeEvent>;
     protected contentElementRef: ElementRef;
+    scrollHeight: number;
+    topPadding: number;
     private onScrollListener;
-    private topPadding;
-    private scrollHeight;
     private previousStart;
     private previousEnd;
     private startupLoop;

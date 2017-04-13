@@ -1,13 +1,4 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Created by yonifarin on 12/3/16.
@@ -149,70 +140,41 @@ var ShSelectComponent = (function () {
     ShSelectComponent.prototype.registerOnTouched = function () { };
     return ShSelectComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ShSelectComponent.prototype, "placeholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], ShSelectComponent.prototype, "isMultiselect", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Function)
-], ShSelectComponent.prototype, "rawOptionGenerator", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ShSelectComponent.prototype, "mode", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], ShSelectComponent.prototype, "showClear", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], ShSelectComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.ViewChild('inputFilter'),
-    __metadata("design:type", core_1.ElementRef)
-], ShSelectComponent.prototype, "inputFilter", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [Array])
-], ShSelectComponent.prototype, "options", null);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], ShSelectComponent.prototype, "onHide", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], ShSelectComponent.prototype, "onShow", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], ShSelectComponent.prototype, "onClear", void 0);
-ShSelectComponent = __decorate([
-    core_1.Component({
-        selector: 'sh-select',
-        template: "<div class=\"header\" [class.sh-select-disabled]=\"disabled\" [class.inline]=\"mode==='inline'\"\n     (click)=\"show()\" [class.open]=\"isOpen\">\n    <input type=\"text\"\n           #inputFilter\n           [hidden]=\"!isOpen\"\n           (click)=\"show()\"\n           [placeholder]=\"placeholder\"\n           [(ngModel)]=\"filter\"\n           (ngModelChange)=\"updateFilter($event)\">\n    <div (click)=\"show(); $event.stopPropagation()\"\n\n         *ngIf=\"!isOpen\">\n        {{selectedValues?.length \n        ? (isMultiselect ? selectedValues?.length + ' Selected' : (selectedValues[0].name || selectedValues))\n        : placeholder}}\n    </div>\n    <i class=\"close icon clear\"\n       *ngIf=\"showClear && selectedValues.length > 0\"\n       (click)=\"clear(); $event.stopPropagation()\"></i>\n</div>\n<sh-select-menu [isOpen]=\"isOpen\"\n                [rows]=\"rows\"\n                [selectedValues]=\"selectedValues\"\n                (noToggleClick)=\"toggleSelected($event)\"></sh-select-menu>",
-        styles: [":host{\n    display: block;\n    position: relative;\n    width: 100%;\n    padding: 0;\n    margin: 0;\n    font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;\n    font-style: normal;\n    font-weight: 300;\n    font-size: 1.0rem;\n    line-height: 2rem;\n    letter-spacing: 0.01rem;\n    color: #212121;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n    text-rendering: optimizeLegibility;\n}\n\n.header{\n    width: 100%;\n    margin: 0 !important;\n    padding: 2px 30px 2px 10px;\n    box-sizing: border-box;\n    background-color: white;\n    font-size: 1.0em;\n    border-radius: 2px;\n    border: 1px solid rgba(34,36,38,.15);\n    vertical-align: middle;\n    cursor: pointer;\n}\n\n.header.inline{\n    background-color: transparent;\n    width: max-content;\n    border: none;\n}\n\n.header.open{\n    border-radius: 2px 2px 0 0;\n    box-shadow: 0 2px 3px 0 rgba(34,36,38,.15);\n    border-bottom: none;\n}\n\ndiv{\n    display: block;\n}\n\ninput[type=\"text\"]{\n    border: none !important;\n    vertical-align: middle !important;\n    width: 100%;\n    margin: 0 !important;\n    padding: 0px !important;\n    box-sizing: border-box;\n    background-color: white;\n    font-size: 1.0rem !important;\n    line-height: 2rem !important;\n    letter-spacing: 0.01rem !important;\n    font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;\n    font-style: normal !important;\n    font-weight: 300 !important;\n    -webkit-font-smoothing: antialiased !important;\n    -moz-osx-font-smoothing: grayscale !important;;\n    text-rendering: optimizeLegibility !important;;\n}\n\ninput[type=\"text\"] { outline: none; }\n\n\n[hidden]{\n    display: none;\n}\n\ni.close.icon.clear::after {     \n    content: \"\u2715\";\n    padding-right: 8px;\n    font-weight: 800;\n    color: gray; \n}\n\ni.close.icon.clear:hover::after {\n    color: red; \n}\n\n.clear{\n    position: absolute;\n    right: 2px;\n    padding-left: 2px;\n    padding-right: 2px;\n    top:3px;\n    cursor: pointer;\n}\n.sh-select-disabled{\n    background-color: #e3e3e3;\n    color: darkgray;\n    cursor: not-allowed;\n}\n\n"],
-        host: {
-            '(window:mouseup)': 'onDocumentClick($event)'
-        },
-        providers: [
-            {
-                provide: forms_1.NG_VALUE_ACCESSOR,
-                useExisting: ShSelectProvider(),
-                multi: true
-            }
-        ]
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef,
-        core_1.Renderer])
-], ShSelectComponent);
+ShSelectComponent.decorators = [
+    { type: core_1.Component, args: [{
+                selector: 'sh-select',
+                template: "<div class=\"header\" [class.sh-select-disabled]=\"disabled\" [class.inline]=\"mode==='inline'\"\n     (click)=\"show()\" [class.open]=\"isOpen\">\n    <input type=\"text\"\n           #inputFilter\n           [hidden]=\"!isOpen\"\n           (click)=\"show()\"\n           [placeholder]=\"placeholder\"\n           [(ngModel)]=\"filter\"\n           (ngModelChange)=\"updateFilter($event)\">\n    <div (click)=\"show(); $event.stopPropagation()\"\n\n         *ngIf=\"!isOpen\">\n        {{selectedValues?.length \n        ? (isMultiselect ? selectedValues?.length + ' Selected' : (selectedValues[0].name || selectedValues))\n        : placeholder}}\n    </div>\n    <i class=\"close icon clear\"\n       *ngIf=\"showClear && selectedValues.length > 0\"\n       (click)=\"clear(); $event.stopPropagation()\"></i>\n</div>\n<sh-select-menu [isOpen]=\"isOpen\"\n                [rows]=\"rows\"\n                [selectedValues]=\"selectedValues\"\n                (noToggleClick)=\"toggleSelected($event)\"></sh-select-menu>",
+                styles: [":host{\n    display: block;\n    position: relative;\n    width: 100%;\n    padding: 0;\n    margin: 0;\n    font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;\n    font-style: normal;\n    font-weight: 300;\n    font-size: 1.0rem;\n    line-height: 2rem;\n    letter-spacing: 0.01rem;\n    color: #212121;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n    text-rendering: optimizeLegibility;\n}\n\n.header{\n    width: 100%;\n    margin: 0 !important;\n    padding: 2px 30px 2px 10px;\n    box-sizing: border-box;\n    background-color: white;\n    font-size: 1.0em;\n    border-radius: 2px;\n    border: 1px solid rgba(34,36,38,.15);\n    vertical-align: middle;\n    cursor: pointer;\n}\n\n.header.inline{\n    background-color: transparent;\n    width: max-content;\n    border: none;\n}\n\n.header.open{\n    border-radius: 2px 2px 0 0;\n    box-shadow: 0 2px 3px 0 rgba(34,36,38,.15);\n    border-bottom: none;\n}\n\ndiv{\n    display: block;\n}\n\ninput[type=\"text\"]{\n    border: none !important;\n    vertical-align: middle !important;\n    width: 100%;\n    margin: 0 !important;\n    padding: 0px !important;\n    box-sizing: border-box;\n    background-color: white;\n    font-size: 1.0rem !important;\n    line-height: 2rem !important;\n    letter-spacing: 0.01rem !important;\n    font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;\n    font-style: normal !important;\n    font-weight: 300 !important;\n    -webkit-font-smoothing: antialiased !important;\n    -moz-osx-font-smoothing: grayscale !important;;\n    text-rendering: optimizeLegibility !important;;\n}\n\ninput[type=\"text\"] { outline: none; }\n\n\n[hidden]{\n    display: none;\n}\n\ni.close.icon.clear::after {     \n    content: \"\u2715\";\n    padding-right: 8px;\n    font-weight: 800;\n    color: gray; \n}\n\ni.close.icon.clear:hover::after {\n    color: red; \n}\n\n.clear{\n    position: absolute;\n    right: 2px;\n    padding-left: 2px;\n    padding-right: 2px;\n    top:3px;\n    cursor: pointer;\n}\n.sh-select-disabled{\n    background-color: #e3e3e3;\n    color: darkgray;\n    cursor: not-allowed;\n}\n\n"],
+                host: {
+                    '(window:mouseup)': 'onDocumentClick($event)'
+                },
+                providers: [
+                    {
+                        provide: forms_1.NG_VALUE_ACCESSOR,
+                        useExisting: ShSelectProvider(),
+                        multi: true
+                    }
+                ]
+            },] },
+];
+/** @nocollapse */
+ShSelectComponent.ctorParameters = function () { return [
+    { type: core_1.ElementRef, },
+    { type: core_1.Renderer, },
+]; };
+ShSelectComponent.propDecorators = {
+    'placeholder': [{ type: core_1.Input },],
+    'isMultiselect': [{ type: core_1.Input },],
+    'rawOptionGenerator': [{ type: core_1.Input },],
+    'mode': [{ type: core_1.Input },],
+    'showClear': [{ type: core_1.Input },],
+    'disabled': [{ type: core_1.Input },],
+    'inputFilter': [{ type: core_1.ViewChild, args: ['inputFilter',] },],
+    'options': [{ type: core_1.Input },],
+    'onHide': [{ type: core_1.Output },],
+    'onShow': [{ type: core_1.Output },],
+    'onClear': [{ type: core_1.Output },],
+};
 exports.ShSelectComponent = ShSelectComponent;
 function ShSelectProvider() {
     return core_1.forwardRef(function () { return ShSelectComponent; });
